@@ -139,7 +139,7 @@ Xsurv<-function(datax,datay,top_n=NULL,option=c('defaut','xgb','lgb','gbm','rf')
 
     xrisk<-surv_risk_aut_rf(mod,datax,datax)
 
-    print('here')
+
 
 
   } else  {
@@ -170,7 +170,7 @@ Xsurv<-function(datax,datay,top_n=NULL,option=c('defaut','xgb','lgb','gbm','rf')
     k=which.max(xgbcx)
     mod<-model$models[[k]]
     cdx<-xgbcx[k]
-    sp_tree<-sim_surv_xgb_tree(mod,x_train,y,top_n,maxdpth,cp)
+    sp_tree<-sim_surv_tree(mod,x_train,y,top_n,maxdpth,cp)
     sh=SHAPforxgboost::shap.plot.summary.wrap1(mod,x_train,top_n = top_n)
     xrisk<-surv_risk_aut(mod,datax,datax)
 

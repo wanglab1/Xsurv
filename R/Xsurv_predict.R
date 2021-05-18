@@ -88,7 +88,7 @@ Xsurv_predict<-function(model,x_train,y_train,x_test,nc=25,nq=0.8)
 #' @import lightgbm
 #' @import stats
 #' @import class
-#' @export Xsurv_predict
+#' @export Xsurv_predict_sv
 #' @return predicted survival probabilty
 #'
 Xsurv_predict_sv<-function(model,x_train,y_train,x_new,nc=25)

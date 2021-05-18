@@ -2,13 +2,18 @@
 % Please edit documentation in R/loss_func.R
 \name{cidx_lgb_func}
 \alias{cidx_lgb_func}
-\title{define objective function and evaluation function}
+\title{C-index for Lgb}
 \usage{
 cidx_lgb_func(preds, dtrain)
 }
-\description{
-define objective function and evaluation function
+\arguments{
+\item{preds}{predictor}
+
+\item{dtrain}{train data}
 }
-\details{
-@export cidx_lgb_func
+\value{
+cindex value
+}
+\description{
+This function evaluates C-index for lgb model.
 }

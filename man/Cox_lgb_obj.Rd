@@ -2,13 +2,18 @@
 % Please edit documentation in R/loss_func.R
 \name{Cox_lgb_obj}
 \alias{Cox_lgb_obj}
-\title{define objective function and evaluation function}
+\title{Cox objective func for Lgb}
 \usage{
 Cox_lgb_obj(preds, dtrain)
 }
-\description{
-define objective function and evaluation function
+\arguments{
+\item{preds}{predictor}
+
+\item{dtrain}{train data}
 }
-\details{
-@export Cox_lgb_obj
+\value{
+gradient and hessian
+}
+\description{
+This function calculates cox objcective function for lgb model.
 }

@@ -19,6 +19,9 @@
 surv_risk_aut<-function(model,train_data,test_data){
   train_data<-data.matrix(train_data)
   test_data<-data.matrix(test_data)
+
+
+
   pred_train<-as.data.frame(-predict(model,train_data))
   pred_test<-as.data.frame(-predict(model,test_data))
 
@@ -28,6 +31,8 @@ surv_risk_aut<-function(model,train_data,test_data){
 
   center=cl1$centers
   risklevel<-sort(center)
+
+
 
   r_test<-stats::kmeans(pred_train,centers = risklevel)
   ris_tran <- function(x) {

@@ -2,13 +2,18 @@
 % Please edit documentation in R/loss_func.R
 \name{Cox_xgb_deviance_func}
 \alias{Cox_xgb_deviance_func}
-\title{define objective function and evaluation function}
+\title{Cox deviance for xgb}
 \usage{
 Cox_xgb_deviance_func(preds, dtrain)
 }
-\description{
-define objective function and evaluation function
+\arguments{
+\item{preds}{predictor}
+
+\item{dtrain}{train data}
 }
-\details{
-@export Cox_xgb_deviance_func
+\value{
+deviance value
+}
+\description{
+This function calculates cox deviance for xgb model.
 }
