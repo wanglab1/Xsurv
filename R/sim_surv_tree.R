@@ -43,7 +43,7 @@ sim_surv_tree<-function(model,x_data,y_data,top_nc=NULL,maxdp=NULL,cp=NULL){
   plot(tfit1)
   tfit2<-partykit::ctree(yt~.,data=x_tree)
   ls<-list('tree1'=tfit1,'tree2'=tfit2)
-  print('ok')
+
   ls
 
 }

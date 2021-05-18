@@ -1,9 +1,14 @@
-#'  define objective function and evaluation function
+#' Cox objective func for Lgb
 #'
+#' This function calculates cox objcective function for lgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import lightgbm
 #'
+#' @export Cox_lgb_obj
 #'
+#' @return gradient and hessian
 #'
-#'  @export Cox_lgb_obj
 
 Cox_lgb_obj <- function(preds, dtrain) {
   y_true <- lightgbm::getinfo(dtrain, "label") #labels<-dtrain$label
@@ -40,7 +45,17 @@ Cox_lgb_obj <- function(preds, dtrain) {
   return(list(grad = grad, hess = hess))
 }
 
-### XGB C-index objective
+#' Cindex objective func for xgb
+#'
+#' This function calculates cindex objcective function for xgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import xgboost
+#'
+#' @export cidx_xgb_obj
+#'
+#' @return gradient and hessian
+#'
 cidx_xgb_obj <- function(preds, dtrain) {
   alpha <- 2
   y_true <- xgboost::getinfo(dtrain, 'label')
@@ -84,13 +99,17 @@ cidx_xgb_obj <- function(preds, dtrain) {
   return(list(grad = grad, hess = hess))
 }
 
-
-#'  define objective function and evaluation function
+#' Cindex objective func for Lgb
 #'
+#' This function calculates cindex objcective function for lgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import lightgbm
 #'
+#' @export cidx_lgb_obj
 #'
+#' @return gradient and hessian
 #'
-#'  @export cidx_lgb_obj
 cidx_lgb_obj <- function(preds, dtrain) {
   alpha <- 2
   y_true <- lightgbm::getinfo(dtrain, 'label')
@@ -135,13 +154,16 @@ cidx_lgb_obj <- function(preds, dtrain) {
 }
 
 ### XGB Cox deviance function
-#'  define objective function and evaluation function
+#' Cox deviance for xgb
 #'
+#' This function calculates cox deviance for xgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import xgboost
 #'
+#' @export cidx_xgb_deviance_func
 #'
-#'
-#'  @export Cox_xgb_deviance_func
-#'
+#' @return deviance value
 #'
 Cox_xgb_deviance_func <- function(preds, dtrain) {
   y_true <- xgboost::getinfo(dtrain, "label") #labels<-dtrain$label
@@ -158,12 +180,16 @@ Cox_xgb_deviance_func <- function(preds, dtrain) {
 }
 
 ### LGB Cox deviance function
-#'  define objective function and evaluation function
+#' Cox deviance for Lgb
 #'
+#' This function calculates cox deviance for lgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import lightgbm
 #'
+#' @export cidx_lgb_deviance_func
 #'
-#'
-#'  @export Cox_lgb_deviance_func
+#' @return deviance value
 #'
 Cox_lgb_deviance_func <- function(preds, dtrain) {
   y_true <- lightgbm::getinfo(dtrain, "label") #labels<-dtrain$label
@@ -180,12 +206,16 @@ Cox_lgb_deviance_func <- function(preds, dtrain) {
 }
 
 ### XGB C-index deviance function
-#'  define objective function and evaluation function
+#' Cindex deviance for xgb
 #'
+#' This function calculates cindex deviance for xgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import xgboost
 #'
+#' @export cidx_xgb_deviance_func
 #'
-#'
-#'  @export cidx_xgb_deviance_func
+#' @return deviance value
 #'
 cidx_xgb_deviance_func <- function(preds, dtrain) {
   y_true <- xgboost::getinfo(dtrain, "label") #labels<-dtrain$label
@@ -202,6 +232,17 @@ cidx_xgb_deviance_func <- function(preds, dtrain) {
 }
 
 ### LGB Cox deviance function
+#' Cindex deviance for Lgb
+#'
+#' This function calculates cindex deviance for lgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import lightgbm
+#'
+#' @export cidx_lgb_deviance_func
+#'
+#' @return deviance value
+#'
 cidx_lgb_deviance_func <- function(preds, dtrain) {
   y_true <- lightgbm::getinfo(dtrain, "label") #labels<-dtrain$label
   censor <- as.numeric(y_true > 0)
@@ -217,13 +258,16 @@ cidx_lgb_deviance_func <- function(preds, dtrain) {
 }
 
 ### XGB C-index
-#'  define objective function and evaluation function
+#' C-index for xgb
 #'
+#' This function evaluates C-index for xgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import xgboost
 #'
+#' @export cidx_xgb_func
 #'
-#'
-#'  @export cidx_xgb_func
-#'
+#' @return cindex value
 #'
 cidx_xgb_func <- function(preds, dtrain) {
   y_true <- xgboost::getinfo(dtrain, "label")
@@ -233,12 +277,16 @@ cidx_xgb_func <- function(preds, dtrain) {
 }
 
 ### LGB C-index
-#'  define objective function and evaluation function
+#' C-index for Lgb
 #'
+#' This function evaluates C-index for lgb model.
+#' @param preds predictor
+#' @param dtrain train data
+#' @import lightgbm
 #'
+#' @export cidx_lgb_func
 #'
-#'
-#'  @export cidx_lgb_func
+#' @return cindex value
 #'
 cidx_lgb_func <- function(preds, dtrain) {
   y_true <- lightgbm::getinfo(dtrain, "label")

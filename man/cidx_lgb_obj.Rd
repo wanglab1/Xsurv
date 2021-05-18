@@ -2,13 +2,18 @@
 % Please edit documentation in R/loss_func.R
 \name{cidx_lgb_obj}
 \alias{cidx_lgb_obj}
-\title{define objective function and evaluation function}
+\title{Cindex objective func for Lgb}
 \usage{
 cidx_lgb_obj(preds, dtrain)
 }
-\description{
-define objective function and evaluation function
+\arguments{
+\item{preds}{predictor}
+
+\item{dtrain}{train data}
 }
-\details{
-@export cidx_lgb_obj
+\value{
+gradient and hessian
+}
+\description{
+This function calculates cindex objcective function for lgb model.
 }

@@ -2,13 +2,18 @@
 % Please edit documentation in R/loss_func.R
 \name{Cox_lgb_deviance_func}
 \alias{Cox_lgb_deviance_func}
-\title{define objective function and evaluation function}
+\title{Cox deviance for Lgb}
 \usage{
 Cox_lgb_deviance_func(preds, dtrain)
 }
-\description{
-define objective function and evaluation function
+\arguments{
+\item{preds}{predictor}
+
+\item{dtrain}{train data}
 }
-\details{
-@export Cox_lgb_deviance_func
+\value{
+deviance value
+}
+\description{
+This function calculates cox deviance for lgb model.
 }
