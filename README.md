@@ -41,7 +41,7 @@ shap=xs$SHAP
 shap
 ```
 <p align="center">
-  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/shaplung.png" width="600" height="500">
+  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs/figures/shaplung.png" width="600" height="500">
 </p>
 
 Suvival tree
@@ -53,7 +53,7 @@ tr1<-xtree$tree1
 plot(tr1)
 ```
 <p align="center">
-  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/exampletree.png"  width="500" height="400">
+  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs/figures/exampletree.png"  width="500" height="400">
 </p>
 
 
@@ -70,7 +70,7 @@ ggsurvplot(fit,pval = TRUE,palette = c('coral','burlywood1','cadetblue1'),size=2
                            font.y=c(18,"plain","black"))
 ```
 <p align="center">
-  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/kmrisk.png"  width="600" height="500" >
+  <img src = "https://github.com/topycyao/Xsurv/blob/master/docs/figures/kmrisk.png"  width="600" height="500" >
 </p>
 
 ## Data generation
