@@ -26,15 +26,10 @@ knitr::opts_chunk$set(
 This vignette shows the basic workflow of using `Xsurv` for interpretation of models trained with `XGBoost` and `Lightgbm` with survival data
 
 ```{r setup}
-library("ggplot2")
-library("SHAPforxgboost")
-library("xgboost")
-library("lightgbm")
 library("MASS")
 library("survival")
-library("dplyr")
-library("magrittr")
 library("survcomp")
+library('Xsurv')
 set.seed(981)
 ```
 ## Training the model

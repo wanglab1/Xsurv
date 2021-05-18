@@ -114,14 +114,14 @@ xs&lt;-Xsurv(datax_train,datay_train,top_n = 5,cp=0.01) #cp is the complexity of
 <pre class="{r}"><code>shap=xs$SHAP
 shap</code></pre>
 <p align="center">
-<img src="https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/shaplung.png" width="600" height="500"></p>
+<img src="https://github.com/topycyao/Xsurv/blob/master/docs/figures/shaplung.png" width="600" height="500"></p>
 <p>Suvival tree</p>
 <pre class="{r}"><code>xm&lt;-xs$mod
 xtree&lt;-xs$tree
 tr1&lt;-xtree$tree1
 plot(tr1)</code></pre>
 <p align="center">
-<img src="https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/exampletree.png" width="500" height="400"></p>
+<img src="https://github.com/topycyao/Xsurv/blob/master/docs/figures/exampletree.png" width="500" height="400"></p>
 <p>Risk analysis</p>
 <pre class="{r}"><code><a href="https://rpkgs.datanovia.com/survminer/index.html">library(survminer)
 risk=xs$risk
@@ -132,7 +132,7 @@ ggsurvplot(fit,pval = TRUE,palette = c('coral','burlywood1','cadetblue1'),size=2
                           legend=c(0.85,0.85),legend.title='',font.x=c(15,"plain","black"),
                            font.y=c(18,"plain","black"))</a></code></pre>
 <p align="center">
-<img src="https://github.com/topycyao/Xsurv/blob/master/docs%20/figures/kmrisk.png" width="600" height="500"></p>
+<img src="https://github.com/topycyao/Xsurv/blob/master/docs/figures/kmrisk.png" width="600" height="500"></p>
 </div>
 <div id="data-generation" class="section level2">
 <h2 class="hasAnchor">

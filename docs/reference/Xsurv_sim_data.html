@@ -169,26 +169,7 @@
 <span class='va'>sim_y</span><span class='op'>&lt;-</span><span class='va'>sim_dat</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>21</span>,<span class='fl'>22</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='va'>fit</span><span class='op'>&lt;-</span><span class='fu'><a href='Xsurv.cv.html'>Xsurv.cv</a></span><span class='op'>(</span><span class='va'>sim_x</span>,<span class='va'>sim_y</span>,top_n<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.5899327
-#&gt; [1] 0.4987681
-#&gt; [1] 0.7342216
-#&gt; [1] 0.7991443
-#&gt; [1] 0.7342216
-#&gt; [1] 0.7991443
-#&gt; [1] 0.7621032
-#&gt; [1] 0.5922794
-#&gt; [1] 0.7621032
-#&gt; [1] 0.5922794
-#&gt; [1] 0.8246236
-#&gt; [1] 0.34356
-#&gt; [1] 0.8246236
-#&gt; [1] 0.34356
-#&gt; [1] 0.8374801
-#&gt; [1] 0.4362357
-#&gt; [1] 0.8374801
-#&gt; [1] 0.4362357
-#&gt; [1] 0.8374801
-#&gt; [1] 0.4362357</div><div class='img'><img src='Xsurv_sim_data-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in if ((maximize &amp;&amp; score &gt; best_score) || (!maximize &amp;&amp; score &lt;     best_score)) {    best_msg &lt;&lt;- format.eval.string(i, env$bst_evaluation, env$bst_evaluation_err)    best_score &lt;&lt;- score    best_iteration &lt;&lt;- i    best_ntreelimit &lt;&lt;- best_iteration * env$num_parallel_tree    if (!is.null(env$bst)) {        xgb.attributes(env$bst) &lt;- list(best_iteration = best_iteration -             1, best_score = best_score, best_msg = best_msg,             best_ntreelimit = best_ntreelimit)    }} else if (i - best_iteration &gt;= stopping_rounds) {    env$stop_condition &lt;- TRUE    env$end_iteration &lt;- i    if (verbose &amp;&amp; NVL(env$rank, 0) == 0)         cat("Stopping. Best iteration:\n", best_msg, "\n\n",             sep = "")}: missing value where TRUE/FALSE needed</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
