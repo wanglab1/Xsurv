@@ -235,8 +235,7 @@ Xsurv.cv<-function(datax,datay,top_n=NULL,option=c('defaut','xgb','lgb','gbm','r
           alp=alpha
           et=eta
         }
-        print(cdx)
-        print(lam)
+
       }
 
 
