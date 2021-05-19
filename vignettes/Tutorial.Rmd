@@ -1,0 +1,39 @@
+---
+title: "Tutorial"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Survival data
+
+### Cox model
+In biomedical studies, the cox proportional hazard model (Cox 1972) is the most commonly used model for the regres-sion analysis of survival outcomes.
+ $$ \lambda (t \mid x) = \lambda_{0}(t) \exp{H(x)} $$
+where H(.) is a risk score function that relates covariates and regression coefficients. In the standard Cox model, the risk score is a linear term, i.e., $ H(x)=x^{T}\beta$ . In particular, Xsurv_sim_data can generate data with linear model.
+
+```{r}
+library(Xsurv)
+set.seed(981)
+beta=c(0.1,0.5,0.2,1,0.01) #set beta value
+
+sim_dat<-Xsurv_sim_data(size=100,dim=5,lambda=2,vu=1, 
+                        beta=beta, c_rate=0.25) 
+```
+### Automatically tunning the parameter with Xsurv.cv function
+
+```{r}
+
+ X<-sim_dat[,1:5]
+ y<-sim_dat[,6:7]
+
+xs_cv<-Xsurv.cv(X,y,option = 'lgb',search = 'rd') #random search tunning parameter with lightgbm model
+# Not run:both xgboost and lightgbm can be automatically tunning with Xsurv.cv
+# xs_cv<-Xsurv.cv(X,y,option = 'xgb',search = 'grid') 
+xmod<-xs_cv$model
+cindx<--xs_cv$cindex
+
+```
+
