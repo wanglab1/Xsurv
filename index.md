@@ -5,7 +5,7 @@
 ## Why `Xsurv`?
 - **Work with any type of survival data.** 
 - **One of the simplest syntax.** 
-- **Popular machine learning methods included** Xgboost, Lightgbm, random forests, and gbm.
+- **Popular machine learning methods included** (Xgboost, Lightgbm, random forests, and gbm).
 - **No parameters tuning bothering with cross-validation**: everything can be done automatically! - **Robust model determined risk levels.**
 - **Know the important  features associated with survival outcome**:clearly presented by SHAP importance plot. 
 
