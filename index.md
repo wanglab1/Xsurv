@@ -2,7 +2,7 @@
 
 # `Xsurv` --- Efficient grdient boosting for survival data  in R
 
-## Why `Xsurv`?
+## The miracle of `Xsurv`
 - **Work with any type of survival data.** 
 - **One of the simplest syntax.** 
 - **Popular machine learning methods included** (Xgboost, Lightgbm, random forests, and gbm).

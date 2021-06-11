@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   warning = FALSE,
   message = FALSE,
-  fig.width = 5,
-  fig.height = 4
+  fig.width = 6,
+  fig.height = 5
 )
 ```
 
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 ### Latest release on GitHub
 
 ```{r}
-install.packages('devtools') # Ignore this if devtools is already installed.
+#install.packages('devtools')  Ignore this if devtools is already installed.
 devtools::install_github('topycyao/Xsurv')
 ```
 ## Quick start
@@ -54,6 +54,6 @@ sim_y<-sim_dat[,c(21,22)] # The last 2 columns
 **3) Quick fit from data
 ```{r}
 
-fit<-Xsurv.cv(sim_x,sim_y,top_n=5)
+fit<-Xsurv.cv(sim_x,sim_y,top_n=3)
 
 ```
