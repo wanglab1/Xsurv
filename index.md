@@ -39,7 +39,7 @@ Create a ticket with a bug or question on [GitHub Issues](https://github.com/top
 
 ## Installation
 ### Latest release on GitHub
-```{r}
+```r
 install.packages('devtools') # Ignore this if devtools is already installed.
 devtools::install_github('topycyao/Xsurv')
 ```
@@ -74,7 +74,7 @@ library(Xsurv) #Load Xsurv into R
 
 ```
 ### Xsurv can help to generate survival data
-```{r}
+```r
 sim_dat<-Xsurv_sim_data(size=500,dim=20,lambda=2,vu=1, 
                                     c_rate=0.3)   # A data set is generated with sample size =500
 
@@ -83,7 +83,7 @@ sim_x<-sim_dat[,1:20] # The first 20 (equal to dimension of covariates) columns
 sim_y<-sim_dat[,c(21,22)] # The last 2 columns
 ```
 ### Quick fit from data
-```{r}
+```r
 
 fit<-Xsurv.cv(sim_x,sim_y,top_n=5)
 

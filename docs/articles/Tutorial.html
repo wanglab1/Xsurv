@@ -6,12 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutorial • Xsurv</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial">
+<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Tutorial">
 <meta property="og:description" content="This vignette gives some tutorial on Xsurv.
 ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -21,7 +22,7 @@
 </head>
 <body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -95,7 +96,8 @@
 <div id="cox-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cox-model" class="anchor"></a>Cox model</h3>
-<p>In biomedical studies, the cox proportional hazard model (Cox 1972) is the most commonly used model for the regression analysis of survival outcomes. <span class="math display">\[ \lambda (t \mid x) = \lambda_{0}(t) \exp{H(x)} \]</span> where H(.) is a risk score function that relates covariates and regression coefficients. In the standard Cox model, the risk score is a linear term, i.e., $ H(x)=x^{T}$ . In particular, Xsurv_sim_data can generate data with linear model.</p>
+<p>In biomedical studies, the Cox proportional hazard model (Cox 1972) is the most commonly used model for the regression analysis of survival outcomes. Let’s consider the standard time-to-event(e.g death) data $(t_i,,_i) $ where <span class="math inline">\(t_i\)</span> is the observed time,<span class="math inline">\(\mathbf{x_i}\)</span> is the covariate vector and <span class="math inline">\(\delta_i\)</span> is the censoring indicator. Censoring is a type of missing data for event time which means the observed time may not be the same as the actual event time. There are different reasons for censoring occurence such as the lost of follow-up for the subject ,the termination of study before the event happens and so on. The Cox model gives the expression of hazard function of a subject at time t in terms of a baseline hazard <span class="math inline">\(\lambda_0 (t)\)</span> and an exponential function of <span class="math inline">\(\mathbf{x_i}\)</span>:</p>
+<p><span class="math display">\[ \lambda (t \mid x) = \lambda_{0}(t) \exp{H(\mathbf{x_i})} \]</span> where H(.) is a risk score function that relates covariates and regression coefficients. In the standard Cox model, the risk score is a linear term, i.e., $ H()=^{T}$ . In particular, Xsurv_sim_data can generate data for linear model.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Xsurv</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">981</span><span class="op">)</span>
@@ -148,31 +150,29 @@
 <span class="va">xs</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/Xsurv.cv.html">Xsurv.cv</a></span><span class="op">(</span><span class="va">datax_train</span>,<span class="va">datay_train</span>,top_n<span class="op">=</span><span class="fl">5</span>,cp<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></code></pre></div>
 <p><img src="Tutorial_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">xm</span><span class="op">&lt;-</span><span class="va">xs</span><span class="op">$</span><span class="va">model</span>
-
-<span class="va">xtree</span><span class="op">&lt;-</span><span class="va">xs</span><span class="op">$</span><span class="va">tree</span><span class="op">$</span><span class="va">tree1</span>
-<span class="co">#ctree</span>
-<span class="va">xctree</span><span class="op">&lt;-</span><span class="va">xs</span><span class="op">$</span><span class="va">tree</span><span class="op">$</span><span class="va">tree2</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">xctree</span><span class="op">)</span></code></pre></div>
-<p><img src="Tutorial_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-
+<code class="sourceCode R"><span class="va">xm</span><span class="op">&lt;-</span><span class="va">xs</span><span class="op">$</span><span class="va">model</span>
 <span class="va">shap</span><span class="op">=</span><span class="va">xs</span><span class="op">$</span><span class="va">SHAP</span>
-
 <span class="va">shap</span></code></pre></div>
-<p><img src="Tutorial_files/figure-html/unnamed-chunk-5-3.png" width="576"></p>
+<p><img src="Tutorial_files/figure-html/unnamed-chunk-5-2.png" width="576"> ### Risk</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span>
+<span class="va">risk</span><span class="op">=</span><span class="va">xs</span><span class="op">$</span><span class="va">risk</span>
+<span class="co">#plot the kaplan-meier curve for different risk levels</span>
+<span class="va">risk_data</span><span class="op">=</span><span class="va">risk</span><span class="op">$</span><span class="va">data</span>
+<span class="va">fit</span><span class="op">=</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>,<span class="va">status</span><span class="op">)</span><span class="op">~</span><span class="va">risk</span>,data<span class="op">=</span><span class="va">risk_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit</span>,pval <span class="op">=</span> <span class="cn">TRUE</span>,palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'coral'</span>,<span class="st">'burlywood1'</span>,<span class="st">'cadetblue1'</span><span class="op">)</span>,size<span class="op">=</span><span class="fl">2</span>,
+                          legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>,<span class="fl">0.85</span><span class="op">)</span>,legend.title<span class="op">=</span><span class="st">''</span>,font.x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>,<span class="st">"plain"</span>,<span class="st">"black"</span><span class="op">)</span>,
+                           font.y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>,<span class="st">"plain"</span>,<span class="st">"black"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="Tutorial_files/figure-html/unnamed-chunk-6-1.png" width="576"> ## Prediction</p>
+</div>
+<div id="xsurv-can-also-predict-the-survival-curve-of-a-patient-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#xsurv-can-also-predict-the-survival-curve-of-a-patient-" class="anchor"></a>Xsurv can also predict the survival curve of a patient.</h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">#prediction</span>
-
-<span class="co"># Xsurv can also  predict the survival curve of a patient.</span>
-
-<span class="va">pre_x</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/Xsurv_predict_sv.html">Xsurv_predict_sv</a></span><span class="op">(</span><span class="va">xm</span>,<span class="va">datax_train</span>,<span class="va">datay_train</span>,<span class="va">datax_test</span><span class="op">[</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pre_x</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/Xsurv_predict_sv.html">Xsurv_predict_sv</a></span><span class="op">(</span><span class="va">xm</span>,<span class="va">datax_train</span>,<span class="va">datay_train</span>,<span class="va">datax_test</span><span class="op">[</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pre_x</span><span class="op">)</span></code></pre></div>
-<p><img src="Tutorial_files/figure-html/unnamed-chunk-5-4.png" width="576"></p>
+<p><img src="Tutorial_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#Actual survival time</span>

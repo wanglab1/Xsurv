@@ -30,8 +30,8 @@ knitr::opts_chunk$set(
 
 ### Latest release on GitHub
 
-```{r}
-#install.packages('devtools')  Ignore this if devtools is already installed.
+```{r,results='hide',eval=FALSE}
+install.packages('devtools') #Ignore this if devtools is already installed.
 devtools::install_github('topycyao/Xsurv')
 ```
 ## Quick start

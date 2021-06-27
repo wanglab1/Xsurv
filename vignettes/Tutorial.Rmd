@@ -24,9 +24,13 @@ knitr::opts_chunk$set(
 ## Survival data
 
 ### Cox model
-In biomedical studies, the cox proportional hazard model (Cox 1972) is the most commonly used model for the regression analysis of survival outcomes.
- $$ \lambda (t \mid x) = \lambda_{0}(t) \exp{H(x)} $$
-where H(.) is a risk score function that relates covariates and regression coefficients. In the standard Cox model, the risk score is a linear term, i.e., $ H(x)=x^{T}\beta$ . In particular, Xsurv_sim_data can generate data with linear model.
+In biomedical studies, the Cox proportional hazard model (Cox 1972) is the most commonly used model for the regression analysis of survival outcomes.
+Let's consider the standard time-to-event(e.g death) data $(t_i,\mathbf{x_i},\delta_i) $ where $t_i$ is the observed time,$\mathbf{x_i}$ is the covariate vector and $\delta_i$ is the censoring indicator. Censoring is a type of missing data for event time which means the observed time may not be the same as the actual event time. There are different reasons for censoring occurence such as the lost of follow-up for the subject ,the termination of study before the event happens and so on. The Cox model gives the expression of hazard function of a subject at time t in terms of a baseline hazard $\lambda_0 (t)$ and an exponential function of $\mathbf{x_i}$:
+
+ $$ \lambda (t \mid x) = \lambda_{0}(t) \exp{H(\mathbf{x_i})} $$
+where H(.) is a risk score function that relates covariates and regression coefficients. In the standard Cox model, the risk score is a linear term, i.e., $ H(\mathbf{x_i})=\mathbf{x_i}^{T}\beta$ . In particular, Xsurv_sim_data can generate data for linear model.
+
+
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 library(Xsurv)
@@ -75,23 +79,28 @@ datax_test<-mydata[181:228,-c(1,2)]
 
 #A survival tree plot will be generated. cp here is the pre-specified complexity of tree.
 xs<-Xsurv.cv(datax_train,datay_train,top_n=5,cp=0.01)
-
 xm<-xs$model
-
-xtree<-xs$tree$tree1
-#ctree
-xctree<-xs$tree$tree2
-plot(xctree)
-
-
 shap=xs$SHAP
-
 shap
+```
+### Risk
+```{r}
+library(survminer)
+risk=xs$risk
+#plot the kaplan-meier curve for different risk levels
+risk_data=risk$data
+fit=survival::survfit(Surv(time,status)~risk,data=risk_data)
+ggsurvplot(fit,pval = TRUE,palette = c('coral','burlywood1','cadetblue1'),size=2,
+                          legend=c(0.85,0.85),legend.title='',font.x=c(15,"plain","black"),
+                           font.y=c(18,"plain","black"))
 
-#prediction
 
-# Xsurv can also  predict the survival curve of a patient.
+```
+## Prediction
 
+### Xsurv can also  predict the survival curve of a patient.
+
+```{r}
 pre_x<-Xsurv_predict_sv(xm,datax_train,datay_train,datax_test[10,])
 
 plot(pre_x)
