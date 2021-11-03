@@ -293,4 +293,95 @@ cidx_lgb_func <- function(preds, dtrain) {
   censor <- as.numeric(y_true > 0)
   surv_t <- survival::Surv(abs(y_true), censor)
   return(list(name = 'cidx', value = concordance(surv_t ~ preds)$con, higher_better = T))
+
 }
+
+
+
+#define AFT objective
+
+
+#XGB AFT lognormal
+aft_lognormal_obj_xgb <- function(preds, dtrain) {
+  y_true <- xgboost::getinfo(dtrain, "label")
+  yy <- (log(abs(y_true)) - preds)
+  indicator <- y_true > 0
+  censor <- yy[!indicator]
+  grad <- hess <- rep(1, length(yy))
+  dcensor <- dnorm(censor)
+  pcensor <- pnorm(-censor)
+  grad[indicator] <- -yy[indicator]
+  grad[!indicator] <- -dcensor / pcensor
+  hess[!indicator] <- dcensor * (dcensor - censor * pcensor) / pcensor ^ 2
+  return(list(grad = grad, hess = hess))
+}
+
+### XGB AFT Exponential objective
+aft_exponential_obj_xgb <- function(preds, dtrain) {
+  y_true <- xgboost::getinfo(dtrain, "label")
+  ey <- exp((log(abs(y_true)) - preds))
+  indicator <- y_true > 0
+  event <- ey[indicator]
+  censor <- ey[!indicator]
+  grad <- hess <- rep(1, length(ey))
+  grad[indicator] <- (1 - event) / (1 + event)
+  grad[!indicator] <- - 1 / (1 + 1 / censor)
+  hess[indicator] <- 2 * event / (1 + event) ^ 2
+  hess[!indicator] <- (1 + censor) ^ -2
+  return(list(grad = grad, hess = hess))
+}
+
+
+### XGB AFT Weibull objective
+aft_weibull_obj_xgb <- function(preds, dtrain) {
+  y_true <- xgboost::getinfo(dtrain, "label")
+  ey <- exp((log(abs(y_true)) - preds))
+  indicator <- y_true > 0
+  grad <- -ey
+  grad[indicator] <- 1 - ey[indicator]
+  return(list(grad = grad, hess = ey))
+}
+### LGB AFT log-normal objective
+aft_lognormal_obj <- function(preds, dtrain) {
+  y_true <- lightgbm::getinfo(dtrain, "label")
+  yy <- (log(abs(y_true)) - preds)
+  indicator <- y_true > 0
+  censor <- yy[!indicator]
+  grad <- hess <- rep(1, length(yy))
+  dcensor <- dnorm(censor)
+  pcensor <- pnorm(-censor)
+  grad[indicator] <- -yy[indicator]
+  grad[!indicator] <- -dcensor / pcensor
+  hess[!indicator] <- dcensor * (dcensor - censor * pcensor) / pcensor ^ 2
+  return(list(grad = grad, hess = hess))
+}
+
+### LGB AFT Exponential objective
+aft_exponential_obj <- function(preds, dtrain) {
+  y_true <- lightgbm::getinfo(dtrain, "label")
+  ey <- exp((log(abs(y_true)) - preds))
+  indicator <- y_true > 0
+  event <- ey[indicator]
+  censor <- ey[!indicator]
+  grad <- hess <- rep(1, length(ey))
+  grad[indicator] <- (1 - event) / (1 + event)
+  grad[!indicator] <- - 1 / (1 + 1 / censor)
+  hess[indicator] <- 2 * event / (1 + event) ^ 2
+  hess[!indicator] <- (1 + censor) ^ -2
+  return(list(grad = grad, hess = hess))
+}
+
+### LGB AFT Weibull objective
+aft_weibull_obj <- function(preds, dtrain) {
+  y_true <- lightgbm::getinfo(dtrain, "label")
+  ey <- exp((log(abs(y_true)) - preds))
+  indicator <- y_true > 0
+  grad <- -ey
+  grad[indicator] <- 1 - ey[indicator]
+  return(list(grad = grad, hess = ey))
+}
+
+
+
+
+
