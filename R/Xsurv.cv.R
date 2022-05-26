@@ -63,7 +63,12 @@ Xsurv.cv<-function(datax,datay,top_n=NULL,option=c('defaut','xgb','lgb','gbm','r
     nround=1000
   if(is.null(early_stopping_rounds))
     early_stopping_rounds=20
-
+  if(is.null(top_n))
+     top_n=3
+  if(is.null(cp))
+     cp=0.01
+   if(is.null(maxdpth))
+     maxdpth=3
   lam=0
   alp=0
   et=0
