@@ -13,10 +13,10 @@ devtools::install_github("topycyao/Xsurv")
 library(Xsurv)
 library(survival)
 #fit the data 
-data(lung)
-View(lung)
+data('cancer')
+View(cancer)
 
-mydata<-(lung[,-1])
+mydata<-(cancer[,-1])
 
 datay_train<-mydata[,c(1,2)]
 datax_train<-mydata[,-c(1,2)]
